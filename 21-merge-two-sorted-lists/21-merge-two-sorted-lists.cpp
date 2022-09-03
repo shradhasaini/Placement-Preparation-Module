@@ -1,50 +1,31 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode* result;
+    ListNode* mergeTwoLists(ListNode* L1, ListNode* L2) {
         
-        // base cases.
-        if(list1 == nullptr && list2 != nullptr) {
-            return list2;
-        }
-        else if(list2 == nullptr && list1!=nullptr) {
-            return list1;
-        }
-        else if(list1 == nullptr && list2 == nullptr) {
-            return list1;
-        }
-        else {
-                        
-            // compute the starting node.
-            if(list1->val <= list2->val) {
-                result = list1;
-                list1=list1->next;
-            } else {
-                result = list2;
-                list2 = list2->next;
-            }
-            ListNode* head = result;
-            
-            
-            while(list1!=nullptr && list2!= nullptr) {
-                if(list1->val <= list2->val) {
-                    result->next = list1;
-                    list1 = list1->next;
-                } else {
-                    result->next = list2;
-                    list2 = list2->next;
-                }
-                result = result->next;
-            }
-            
-            if(list1!= nullptr) {
-                result->next = list1;
-            }
-            if(list2!= nullptr) {
-                result->next=list2;
-            }
-            
-            return head;
-        }
+        if(L1 ==NULL)  return L2;
+        if(L2==NULL)   return L1;
+        if(L1-> val > L2-> val) std:: swap(L1, L2);
+        ListNode* res =L1;
+        while(L1!=NULL && L2!=NULL)
+        {
+            ListNode* temp = NULL;
+            while(L1 !=NULL && L1->val<=L2->val){
+                temp = L1;
+                L1= L1->next;
+    }
+            temp-> next=L2;
+            std:: swap(L1,L2);
+    }
+        return res;
     }
 };
