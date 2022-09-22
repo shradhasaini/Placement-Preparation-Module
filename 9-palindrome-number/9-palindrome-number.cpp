@@ -1,17 +1,21 @@
-class Solution {
+class Solution 
+{
 public:
-	bool isPalindrome(int x) {
+    bool isPalindrome(int x) 
+    {
+        int tmp = x;
+        long long chk = 0;
+        while(tmp>0)
+        {
+            chk*=10;
+            chk+=(tmp%10);
+            tmp/=10;
+        }
+        if(chk==x)
+        {
+            return true;
+        }
         
-    	string s = to_string(x);
-		int len = s.length()-1;
-		int i = 0;
-		while(i < len){
-			if(s[i] != s[len]){
-				return false;
-			}
-			i++;
-			len--;
-		}
-		return true;
-	}
+        return false;
+    }
 };
